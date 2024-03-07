@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <h1 class="text-3xl">白日依山尽</h1>
-  </div>
+  <div class="text-center">首页</div>
 </template>
 
 <script setup lang="ts"></script>
