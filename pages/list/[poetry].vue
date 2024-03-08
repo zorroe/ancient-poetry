@@ -25,7 +25,10 @@ const queryData = async () => {
 }
 
 onMounted(() => {
-  dynasty.value = route.params.dynasty
+  const d = route.params.dynasty as string
+  if (d) {
+    dynasty.value = d
+  }
   queryData()
 })
 </script>

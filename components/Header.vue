@@ -2,12 +2,12 @@
   <header class="bg-white">
     <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-center gap-8">
-        <a
+        <NuxtLink
+          :to="'/list/' + dynasty"
           v-for="dynasty in dynasties"
-          class="text-gray-500 transition hover:text-gray-500/75"
-          href="#">
+          class="text-gray-500 transition hover:text-gray-500/75">
           {{ dynasty }}
-        </a>
+        </NuxtLink>
       </div>
     </div>
   </header>
