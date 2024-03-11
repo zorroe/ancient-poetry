@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-const dynasties = ['先秦', '秦', '汉', '唐', '宋', '元', '明', '清']
+const dynasties = ['唐', '宋', '元', '明', '清']
 
 const asyncData = async () => {}
 

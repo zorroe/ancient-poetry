@@ -1,5 +1,7 @@
 <template>
-  <div class="text-2xl">白日依山尽，黄河入海流</div>
+  <div v-for="poetry in poetries">
+    <Poetry :data="poetry"></Poetry>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -12,6 +14,8 @@ const dynasty = ref('唐')
 const pageNum = ref(1)
 const pageSize = ref(10)
 
+const poetries = ref([])
+
 const queryData = async () => {
   const params = {
     dynasty: dynasty.value,
@@ -19,9 +23,9 @@ const queryData = async () => {
     pageSize: pageSize.value,
   }
 
-  const data = await queryPoetry(params)
+  const { data } = await queryPoetry(params)
 
-  console.log(data)
+  poetries.value = data
 }
 
 onMounted(() => {
