@@ -2,17 +2,25 @@
   <div v-for="poetry in poetries">
     <Poetry :data="poetry"></Poetry>
   </div>
+  <div class="w-full flex justify-center my-4">
+    <a-pagination
+      :total="total"
+      :page-size="pageSize"
+      show-total
+      @change="handleChange" />
+  </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { queryPoetry } from '~/api/index'
+import { queryPoetry, queryPoetryCount } from '~/api/index'
 
 const route = useRoute()
 
 const dynasty = ref('唐')
 const pageNum = ref(1)
 const pageSize = ref(10)
+const total = ref(0)
 
 const poetries = ref([])
 
@@ -24,8 +32,27 @@ const queryData = async () => {
   }
 
   const { data } = await queryPoetry(params)
-
   poetries.value = data
+}
+
+const queryCount = async () => {
+  const params = {
+    dynasty: dynasty.value,
+  }
+  const { data } = await queryPoetryCount(params)
+  total.value = data
+  pageNum.value = Math.ceil(data / pageSize.value)
+}
+
+const loadData = async () => {
+  await queryData()
+  await queryCount()
+}
+
+const handleChange = async (page: number) => {
+  pageNum.value = page
+  await queryData()
+  document.getElementById('back-top')?.click()
 }
 
 onMounted(() => {
@@ -33,7 +60,7 @@ onMounted(() => {
   if (d) {
     dynasty.value = d
   }
-  queryData()
+  loadData()
 })
 </script>
 

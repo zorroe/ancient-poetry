@@ -7,3 +7,11 @@ export const queryPoetry = async (params: any) => {
   })
   return data
 }
+
+export const queryPoetryCount = async (params: any) => {
+  const data = await request(`/poetry/count`, {
+    method: 'get',
+    params,
+  })
+  return data
+}
