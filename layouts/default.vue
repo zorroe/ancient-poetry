@@ -9,6 +9,7 @@
         id="back-top"
         target-container="#header"
         style="position: absolute" />
+      <Search />
     </div>
   </div>
 </template>

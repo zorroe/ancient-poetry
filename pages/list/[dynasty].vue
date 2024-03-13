@@ -2,7 +2,9 @@
   <div v-for="poetry in poetries">
     <Poetry :data="poetry"></Poetry>
   </div>
-  <div class="w-full flex justify-center my-4">
+  <div
+    class="w-full flex justify-center my-4"
+    v-show="total > pageSize">
     <a-pagination
       :total="total"
       :page-size="pageSize"
