@@ -34,21 +34,12 @@ const queryData = async () => {
   }
 
   const { data } = await queryPoetry(params)
-  poetries.value = data
-}
-
-const queryCount = async () => {
-  const params = {
-    dynasty: dynasty.value,
-  }
-  const { data } = await queryPoetryCount(params)
-  total.value = data
-  pageNum.value = Math.ceil(data / pageSize.value)
+  poetries.value = data.list
+  total.value = data.total
 }
 
 const loadData = async () => {
   await queryData()
-  await queryCount()
 }
 
 const handleChange = async (page: number) => {

@@ -15,3 +15,11 @@ export const queryPoetryCount = async (params: any) => {
   })
   return data
 }
+
+export const queryPoetryByAuthorOrTitle = async (params: any) => {
+  const data = await request(`/poetry/queryByAuthorOrTitle`, {
+    method: 'get',
+    params,
+  })
+  return data
+}
