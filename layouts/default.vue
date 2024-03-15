@@ -9,13 +9,12 @@
         id="back-top"
         target-container="#header"
         style="position: absolute" />
+      <GoHome />
       <Search />
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import Header from '~/components/Header.vue'
-</script>
+<script setup lang="ts"></script>
 
 <style scoped></style>
