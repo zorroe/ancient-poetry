@@ -8,7 +8,7 @@
       v-model="searchVal"
       @press-enter="handleSearch"
       @blur="handleBlur"
-      placeholder="请输入诗人姓名或古诗标题" />
+      placeholder="请输入诗人姓名、标题或内容" />
     <div class="w-10 min-w-10">
       <a-button
         shape="circle"
@@ -42,11 +42,9 @@ const handleClick = () => {
 
 const handleSearch = () => {
   // 执行搜索操作
-  visible.value = false
-  console.log('执行搜索操作')
-}
-
-const handleBlur = () => {
+  if (searchVal.value === '') {
+    return
+  }
   const params = {
     key: searchVal.value,
   }
@@ -54,6 +52,10 @@ const handleBlur = () => {
     path: '/search',
     query: params,
   })
+  visible.value = false
+}
+
+const handleBlur = () => {
   visible.value = false
   searchVal.value = ''
 }
