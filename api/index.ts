@@ -31,3 +31,10 @@ export const queryPoetryByEs = async (params: any) => {
   })
   return data
 }
+
+export const randomPoetry = async () => {
+  const data = await request(`/poetry/randomEsPoetry`, {
+    method: 'get',
+  })
+  return data
+}

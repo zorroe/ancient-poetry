@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen w-screen overflow-auto flex flex-col">
+  <div class="h-screen w-screen overflow-auto flex flex-col relative">
     <Header :msg="msg"></Header>
     <div class="flex-1">
       <NuxtPage />

@@ -8,6 +8,6 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: ['arco-design-nuxt-module', '@vueuse/nuxt'],
+  modules: ['arco-design-nuxt-module'],
   ssr: true,
 })

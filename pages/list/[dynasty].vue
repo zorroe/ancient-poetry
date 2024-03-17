@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { queryPoetry, queryPoetryCount } from '~/api/index'
+import { queryPoetry } from '~/api/index'
 
 const route = useRoute()
 

@@ -4,6 +4,7 @@
       style="width: 300px; height: 40px; margin-top: 40px"
       placeholder="请输入诗人姓名、标题或内容"
       v-model="form.keyword"
+      @search="handleSearch"
       @press-enter="handleSearch" />
     <div class="w-full flex justify-center gap-4 mt-10">
       <a-checkbox v-model="form.isAuthor"> 搜索诗人名 </a-checkbox>
