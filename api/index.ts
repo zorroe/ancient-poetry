@@ -23,3 +23,11 @@ export const queryPoetryByAuthorOrTitle = async (params: any) => {
   })
   return data
 }
+
+export const queryPoetryByEs = async (params: any) => {
+  const data = await request(`/poetry/esSearch`, {
+    method: 'post',
+    data: params,
+  })
+  return data
+}

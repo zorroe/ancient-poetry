@@ -5,7 +5,7 @@
     <a-input
       v-show="visible"
       ref="searchInputRef"
-      v-model="searchVal"
+      v-model="form.keyword"
       @press-enter="handleSearch"
       @blur="handleBlur"
       placeholder="请输入诗人姓名、标题或内容" />
@@ -15,9 +15,9 @@
         size="large"
         type="primary"
         style="width: 40px; height: 40px"
-        @click="handleClick"
-        ><icon-search
-      /></a-button>
+        @click="handleClick">
+        <icon-search/>
+      </a-button>
     </div>
   </div>
 </template>
@@ -27,11 +27,15 @@ const router = useRouter()
 const visible = ref(false)
 const searchInputRef = ref()
 const searchVal = ref('')
+import { Message } from '@arco-design/web-vue'
+
+const form = ref({
+  keyword: '',
+})
 
 const handleClick = () => {
   if (visible.value === false) {
     visible.value = true
-    console.log(searchInputRef.value)
     setTimeout(() => {
       searchInputRef.value.focus()
     }, 0)
@@ -42,15 +46,19 @@ const handleClick = () => {
 
 const handleSearch = () => {
   // 执行搜索操作
-  if (searchVal.value === '') {
+  if (form.value.keyword.trim() === '') {
+    Message.error('请输入搜索关键字')
     return
   }
-  const params = {
-    key: searchVal.value,
-  }
+  // 跳转到搜索页面，将搜索参数隐式传递过去
   router.push({
     path: '/search',
-    query: params,
+    query: {
+      keyword: form.value.keyword.trim(),
+      a: '1',
+      t: '1',
+      c: '1',
+    },
   })
   visible.value = false
 }

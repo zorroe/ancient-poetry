@@ -14,11 +14,13 @@
 </template>
 
 <script setup lang="ts">
-import { queryPoetryByAuthorOrTitle } from '~/api/index'
+import { queryPoetryByEs } from '~/api/index'
 const route = useRoute()
-const router = useRouter()
 
-const key = ref('')
+const keyword = ref('')
+const isAuthor = ref(true)
+const isTitle = ref(true)
+const isContent = ref(true)
 const pageNum = ref(1)
 const pageSize = ref(10)
 const total = ref(0)
@@ -27,11 +29,27 @@ const poetries = ref()
 
 const handleSearch = async () => {
   const params = {
-    key: key.value,
+    keyword: keyword.value,
+    isAuthor: isAuthor.value,
+    isTitle: isTitle.value,
+    isContent: isContent.value,
     pageNum: pageNum.value,
     pageSize: pageSize.value,
   }
-  const { data } = await queryPoetryByAuthorOrTitle(params)
+  if (!params.keyword) {
+    Message.error('请输入搜索关键字')
+    return
+  }
+
+  if (!params.isAuthor && !params.isTitle && !params.isContent) {
+    Message.error('请选择搜索类型')
+    return
+  }
+  const { status, data } = await queryPoetryByEs(params)
+  if (status !== 200) {
+    Message.error('查询失败')
+    return
+  }
   poetries.value = data.list
   total.value = data.total
 }
@@ -43,16 +61,37 @@ const handleChange = async (page: number) => {
 }
 
 watch(
-  () => route.query.key,
+  () => route.query.keyword,
   newVal => {
-    key.value = newVal as string
+    keyword.value = newVal as string
     handleSearch()
   }
 )
 
+const initParams = () => {
+  keyword.value = route.query.keyword as string
+  const a = route.query.a as string
+  const t = route.query.t as string
+  const c = route.query.c as string
+  if (a === '1') {
+    isAuthor.value = true
+  } else {
+    isAuthor.value = false
+  }
+  if (t === '1') {
+    isTitle.value = true
+  } else {
+    isTitle.value = false
+  }
+  if (c === '1') {
+    isContent.value = true
+  } else {
+    isContent.value = false
+  }
+}
+
 onMounted(() => {
-  const params = route.query
-  key.value = params.key as string
+  initParams()
   handleSearch()
 })
 </script>
