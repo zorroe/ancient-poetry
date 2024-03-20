@@ -1,75 +1,25 @@
-# Nuxt 3 Minimal Starter
+# 一个古诗网站
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+> 一个使用Nuxt3和springboot开发的前后端分离古诗网站。
+>
+> 项目地址：[https://github.com/zorroe/ancient-poetry](https://github.com/zorroe/ancient-poetry)
 
-## Setup
+## 技术栈
 
-Make sure to install the dependencies:
+- 前端：Nuxt3
+- 后端：Spring Boot
+- 数据库：MySQL
+- 搜索引擎：Elasticsearch
 
-```bash
-# npm
-npm install
+## 功能
 
-# pnpm
-pnpm install
+- 搜索古诗
+- 根据朝代浏览古诗
 
-# yarn
-yarn install
+## 演示
 
-# bun
-bun install
-```
+![poetry](public/poetry.gif)
 
-## Development Server
+## TODO
 
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+后端：ElasticSearch搜索有10000万条的限制，去除？
